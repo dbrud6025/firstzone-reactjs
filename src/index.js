@@ -32,10 +32,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <>
     <LifeCycleFunctionComponent></LifeCycleFunctionComponent>
-    <LifeCycleClassComponent></LifeCycleClassComponent>
+    {/* <LifeCycleClassComponent></LifeCycleClassComponent>
     <FunctionComponent2></FunctionComponent2> <hr />
     <FunctionComponent3></FunctionComponent3> <hr />
-    <StateClassComponent></StateClassComponent> <hr />
+    <StateClassComponent></StateClassComponent> <hr /> */}
     {/* <FunctionComponent></FunctionComponent> <hr />
     <StateClassComponent></StateClassComponent> <hr />
     <StateFunctionComponent></StateFunctionComponent> <hr /> */}
