@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
+import { MyTimer } from "./MyTimer";
 
 function LifeCycleFunctionComponent(props) {
   const [memberName, setMemberName] = useState("");
@@ -23,6 +24,7 @@ function LifeCycleFunctionComponent(props) {
   return (
     <div>
       <h1>LifeCycleFunctionComponent 연습!!! : {memberName}</h1>
+      <MyTimer></MyTimer>
       <InputGroup className="mb-3">
         <InputGroup.Text id="basic-addon1">이름</InputGroup.Text>
         <Form.Control
