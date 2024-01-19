@@ -3,7 +3,7 @@ import { Button, Form, InputGroup, Table } from "react-bootstrap";
 import { MyTimer } from "./MyTimer";
 
 function LifeCycleFunctionComponent(props) {
-  const [member, setmember] = useState({});
+  const [member, setmember] = useState({ name: "", phone: "" });
   const [memberList, setMemberList] = useState([member]);
   const nameInput = useRef(); // 1)특정 DOM을 접근하기 위해 사용
   const phoneInput = useRef();
@@ -14,6 +14,11 @@ function LifeCycleFunctionComponent(props) {
   };
 
   const memberAdd = () => {
+    //이미 있는 member라면 추가 막기 (이름이 같거나 전화번호가 같은 경우)
+    if (member.name === "" || member.phone === "") return;
+    if (memberList.find((item) => item.name === member.name)) return;
+    if (memberList.find((item) => item.phone === member.phone)) return;
+
     const newMember = { ...member, id: memberNo.current };
     setMemberList([...memberList, newMember]);
     memberNo.current++;

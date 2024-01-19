@@ -24,6 +24,9 @@ import FunctionComponent, {
 } from "component3/FunctionComponent";
 import LifeCycleClassComponent from "component3/LifeCycleClassComponent";
 import LifeCycleFunctionComponent from "component3/LifeCycleFunctionComponent";
+import MemoTest from "component3/MemoTest";
+import CallbackTest from "component3/CallBackTest";
+import SmartHome from "component3/SmartHome";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 // console.log("상수: " + constTest);
@@ -31,7 +34,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 //const hobbyArr = ["축구", "게임", "공부", "골프"];
 root.render(
   <>
-    <LifeCycleFunctionComponent></LifeCycleFunctionComponent>
+    <SmartHome></SmartHome>
+    {/* <CallbackTest></CallbackTest> */}
+    {/* <MemoTest></MemoTest> */}
+    {/* <LifeCycleFunctionComponent></LifeCycleFunctionComponent> */}
     {/* <LifeCycleClassComponent></LifeCycleClassComponent>
     <FunctionComponent2></FunctionComponent2> <hr />
     <FunctionComponent3></FunctionComponent3> <hr />
