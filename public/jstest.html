@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+
+        <div id="here3">숫자!</div>
+        <button id="btnIncrease">증가</button>
+        <button id="btnDecrease">감소</button>
+
+
+        <script>
+            var here3 = document.getElementById("here3");
+            var su = here3.innerText;
+            if (typeof(su) != "number")
+              su = 0;
+            document.getElementById("btnIncrease").onclick = () => {
+              su = parseInt(su) + 1;
+              here3.innerText = su;
+            };
+            document.getElementById("btnDecrease").onclick = () => {
+              su = parseInt(su) - 1;
+              here3.innerText = su;
+            };
+        </script>
+        
+
+
+
+
+        <!--모듈을 사용하면 가장 마지막에 수행 script -> DOM -> module, 이미 존재하는 것은 재실행하지 않음-->
+
+        <script type="module" src="./go1.js"></script>
+        <script type="module" src="./go2.js"></script>
+
+
+
+        <script type="module">
+            document.getElementById("here").innerHTML += "javascript.....";
+        </script>
+        <h1>ReactJS를 위한 자바스크립트 연습</h1>
+
+        <button id="btn1">버튼1</button>
+        <div id="here">여기</div>
+        <div id="here2">!!!!!!!</div>
+
+        <script type="module">
+            document.getElementById("here2").innerHTML = "javascript.....[default=JavaScript]";
+        </script>
+
+        <script>
+            //스프레드 연산자
+            const numbersOne = [1, 2, 3];
+            const numbersTwo = [4, 5, 6];
+            //...이 있으면 펼쳐서 합치기(요소들이 들어간다.)
+            //...이 없으면 []배열이 합쳐짐, 2차원 배열이 된다.
+            const numbersCombined = [
+                ...numbersOne,
+                ...numbersTwo
+            ];
+            const numbers = [1, 2, 3, 4, 5, 6];
+            const [one, two, ...rest] = numbers;
+            console.log(one, two, rest); //rest는 배열이다.
+
+            const v1 = {
+                brand: 'Ford',
+                model: 'Mustang',
+                color: 'red'
+            };
+            const v2 = {
+                type: 'car',
+                year: 2021,
+                color: 'yellow'
+            };
+            const myUpdatedCars = {
+                ...v1,
+                ...v2
+            };
+            //...있으면 {속성:값}
+            //...없으면 1board, 10개 댓글 {{}, {}}
+            console.log(v1);
+            console.log(v2);
+            console.log(myUpdatedCars);
+        </script>
+
+        <script>
+            //Destruction Arrays (배열을 구조화) : 함수가 배열을 반환할 때 유용
+            const arr = ['BMW520', '포터2', 'Discovery'];
+            // old way
+            const car = arr[0];
+            const truck = arr[1];
+            const suv = arr[2];
+            //
+            const [car2, truck2, suv2] = arr;
+            console.log(car2, truck2, suv2);
+            const [add, subtract, multiply, divide] = calculate(10, 3);
+            console.log(add, subtract, multiply, divide);
+            function calculate(a, b) {
+                const add = a + b;
+                const subtract = a - b;
+                const multiply = a * b;
+                const divide = a / b;
+                return [add, subtract, multiply, divide];
+            }
+        </script>
+
+        <script>
+            //map 함수
+            const myArray = ['apple', 'banana', 'orange'];
+            // 배열에 저장되어 있는 값을 변형하고자 한다. -> 원본은 그대로, 새로운 배열 생성 방법 1 
+            // -> for 문(기본적인 방법 -> 선호하지는 않는다)
+            const myList2 = [];
+
+            for (let i = 0; i < myArray.length; i++) {
+                myList2.push("<p>" + myArray[i] + "</p>");
+            }
+            // ['<p>apple</p>', '<p>banana</p>', '<p>orange</p>'] 방법 2 -> map 함수 사용 (추천)
+            const myList = myArray.map((item) => "<p>" + item + "</p>");
+            console.log(myList);
+            document
+                .getElementById("here")
+                .innerHTML = myList
+                .join()
+                .replaceAll(",", "");
+            document
+                .getElementById("here")
+                .innerHTML += myList2
+                .join()
+                .replaceAll(",", "");
+        </script>
+
+        <script>
+            //this 연습
+            class Header {
+                constructor() {
+                    this.color = "red";
+                }
+                changeColor = function (e) {
+                    const hereObj = document.getElementById("here");
+                    if (this == window) 
+                        hereObj.style.backgroundColor = "orange";
+                    else if (this.nodeName == "BUTTON") 
+                        hereObj.style.backgroundColor = "lightgreen";
+                    else if (this.nodeName == "DIV") 
+                        hereObj.style.backgroundColor = "pink";
+                    hereObj.innerHTML += this;
+                    console.dir(this);
+                    e.stopPropagation(); //이벤트 전달 막기
+                }
+            }
+            const myheader = new Header();
+            window.addEventListener("click", myheader.changeColor);
+            document
+                .getElementById("btn1")
+                .addEventListener("click", myheader.changeColor);
+
+            document
+                .getElementById("here")
+                .addEventListener("click", myheader.changeColor);
+        </script>
+
+        <script>
+
+            (function () {
+                console.log("익명함수 실행...즉시실행함수");
+            })();
+            const f4 = function () {
+                console.log("익명함수 변수에 할당합니다.(리터럴함수)");
+            };
+            const f5 = (zz) => {
+                console.log(zz + "화살표함수로 변경합니다.");
+                return zz + "!!!!";
+            };
+            const f6 = (val) => val + " 화살표함수 파라메터와 리턴";
+
+            f4(); //할당 전 호출은 불가...
+            var result = f5("React전에 함수 연습");
+            console.log(result);
+            const result2 = f6(100);
+            console.log(result2);
+        </script>
+
+        <script>
+
+            //class 연습
+            class Shape {
+                //JavaScript 생성자 이름은  constructor()이다.
+                constructor(name) {
+                    this.model = name; //생성시마다 메서드 추가
+                    this.draw = function () {
+                        console.log(this.model + "~~ 그리다 ....");
+                    }
+                }
+                // 프로토타입 메서드 class 내의 함수 정의시 function 예약어는 쓸 수 없다.
+                display() {
+                    return "나는 " + this.model;
+                }
+            }
+            const myshape = new Shape("도형");
+            console.log(myshape);
+            myshape.draw();
+            console.log(myshape.display());
+
+            function display() {
+                return "class 외부에 있는 display 함수!";
+            }
+
+            class Rectangle extends Shape {
+                constructor(name, width, height) {
+                    super(name);
+                    this.width = width;
+                    this.height = height;
+                }
+                show() {
+                    return this.display() + " ,width= " + this.width + " ,height=" + this.height;
+                }
+            }
+            const myshape2 = new Rectangle("사각형", 10, 20);
+            console.log(myshape2.show());
+        </script>
+
+        <script>
+            var a = 10;
+            {
+                let b = 20; // block 내에서만 유효
+            }
+            //console.log(b); 블럭이 없었으면 가능한데, 블럭이 있으면 블럭 안에서만 유효하다.
+            const c = 30; //변경불가 (상수),  react에서는 const 선호!
+
+            function f1() {
+                var d = 100; //지역변수
+                a++;
+                console.log(a);
+            }
+
+            function f2() {
+                //console.log(d);
+                {} {}
+            }
+        </script>
+
+    </body>
+</html>
