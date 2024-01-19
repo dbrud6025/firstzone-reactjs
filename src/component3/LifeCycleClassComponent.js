@@ -36,7 +36,18 @@ class LifeCycleClassComponent extends Component {
         >
           자식 컴포넌트 보이기~~
         </button>
-        {buttonVisible && <div></div>}
+        {buttonVisible && (
+          <div>
+            <LifeCycleClassComponent2></LifeCycleClassComponent2>
+            <button
+              onClick={() =>
+                this.setState({ title: "준비", buttonVisible: false })
+              }
+            >
+              다시 시작!
+            </button>
+          </div>
+        )}
       </div>
     );
   }
@@ -54,6 +65,7 @@ class LifeCycleClassComponent2 extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     console.log("LifeCycleClassComponent........shouldComponentUpdate");
+    return true;
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -69,7 +81,7 @@ class LifeCycleClassComponent2 extends Component {
     const { title, buttonVisible } = this.state;
     return (
       <div>
-        <h1>LifeCycleClassComponent 연습!!! : {title}</h1>
+        <h1>이 부분은 자식이 출력합니다</h1>
         <button
           onClick={() =>
             this.setState({ title: "보이기!", buttonVisible: true })
@@ -77,11 +89,7 @@ class LifeCycleClassComponent2 extends Component {
         >
           자식 컴포넌트 보이기~~
         </button>
-        {buttonVisible && (
-          <div>
-            <LifeCycleClassComponent2></LifeCycleClassComponent2>
-          </div>
-        )}
+        {buttonVisible && <div></div>}
       </div>
     );
   }
