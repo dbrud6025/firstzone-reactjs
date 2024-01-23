@@ -27,6 +27,10 @@ import LifeCycleFunctionComponent from "component3/LifeCycleFunctionComponent";
 import MemoTest from "component3/MemoTest";
 import CallbackTest from "component3/CallBackTest";
 import SmartHome from "component3/SmartHome";
+import BoardProps from "component4/BoardProps";
+import { BoardContextManagement } from "component4/BoardContextManagement";
+import CounterContextManagement from "component4/CounterContextManagement";
+import BoardHome from "component5/BoardHome";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 // console.log("상수: " + constTest);
@@ -34,7 +38,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 //const hobbyArr = ["축구", "게임", "공부", "골프"];
 root.render(
   <>
-    <SmartHome></SmartHome>
+    <BoardHome></BoardHome>
+    {/* <BoardContextManagement></BoardContextManagement>
+    <CounterContextManagement></CounterContextManagement> */}
+    {/* <BoardProps></BoardProps> */}
+    {/* <SmartHome></SmartHome> */}
     {/* <CallbackTest></CallbackTest> */}
     {/* <MemoTest></MemoTest> */}
     {/* <LifeCycleFunctionComponent></LifeCycleFunctionComponent> */}
